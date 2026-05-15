@@ -59,14 +59,11 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 
-ALLOWED_HOSTS = [
-    "localhost",
-    "127.0.0.1",
-    "192.168.0.8",
-    "192.168.0.5",
-    "192.168.0.10",
-    "*",
-]
+ALLOWED_HOSTS = ["*"]
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 AUTH_USER_MODEL = "accounts.CustomUser"
 
