@@ -30,7 +30,7 @@ services:
       Local_Settings_Path: "/local/settings.prod.py"
 
     volumes:
-      - static_volume:/app/staticfiles
+      - static_volume:/opt/makok/staticfiles
 
   frontend-proxy:
     image: nginx:latest
