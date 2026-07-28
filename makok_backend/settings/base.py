@@ -1,6 +1,8 @@
 import os
 from dotenv import load_dotenv
+from pathlib import Path
 
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 DEBUG = False
 SECRET_KEY = NotImplemented
@@ -148,6 +150,6 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 
-STATIC_ROOT = "staticfiles"
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 STATICFILES_DIRS = []
