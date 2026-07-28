@@ -1,4 +1,4 @@
-FROM python:3.12-slim
+FROM python:3.14-slim
 WORKDIR /opt/makok
 
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -7,9 +7,10 @@ ENV PYTHONPATH .
 ENV CORESETTINGS_IN_DOCKER True
 
 RUN set -ex && \
-    apt-get update \
+    apt-get update &&\
     apt-get install -y --no-install-recommends \
         build-essential \
+        libpq-dev \
         && pip install virtualenvwrapper poetry \
         && apt-get autoremove -y \
         && apt-get clean -y \
@@ -18,9 +19,10 @@ RUN set -ex && \
 COPY pyproject.toml poetry.lock ./
 RUN poetry install --no-root
 
-COPY ["README.md", "Makefile", "./"]
+COPY ["README.md", "Makefile", "manage.py", "./"]
 COPY core core
 COPY local local
+COPY makok_backend makok_backend
 
 EXPOSE 8000
 

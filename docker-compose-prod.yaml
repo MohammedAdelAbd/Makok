@@ -1,3 +1,4 @@
+#غيرنا بي شي
 services:
   db:
     image: postgres:17
@@ -24,16 +25,16 @@ services:
     depends_on:
       - db
     environment:
-      - Database: '{"default":{"HOST":"db"}}'
-      - Local_Settings_Path: "/local/settings.prod.py"
+      Database: '{"default":{"HOST":"db"}}'
+      Local_Settings_Path: "/local/settings.prod.py"
 
   frontend-proxy:
     image: nginx:latest
     container_name: frontend_proxy
     ports:
-      - "80:80"
+      - "8001:8001"
     volumes:
-      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
     depends_on:
       - app
 
