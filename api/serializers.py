@@ -12,9 +12,9 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = ['id', 'name']
 
 class ProductSerializer(serializers.ModelSerializer):
-    images = ProductImageSerializer(many=True)   
+    images = ProductImageSerializer(many=True)
     category = CategorySerializer(read_only=True)
-     
+
     category_id = serializers.PrimaryKeyRelatedField(
         source='category', queryset=Category.objects.all(), write_only=True
     )
@@ -22,6 +22,7 @@ class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = ['id', 'name', 'price', 'descriptions', 'category', 'category_id','images']
+
     def create(self, validated_data):
         images_data = validated_data.pop('images')
         product = Product.objects.create(**validated_data)
@@ -40,7 +41,7 @@ class OrderItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = OrderItem
         fields = ['product', 'position', 'text','design_image', 'logo_image', 'color_image']
-        
+
 class OrderSerializer(serializers.ModelSerializer):
     customer = CustomerSerializer()
     items = OrderItemSerializer(many=True, required=False)
@@ -64,8 +65,3 @@ class OrderSerializer(serializers.ModelSerializer):
             OrderItem.objects.create(order=order, **item)
 
         return order
-
-
-
-
-

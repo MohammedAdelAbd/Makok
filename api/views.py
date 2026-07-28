@@ -13,18 +13,18 @@ from dotenv import load_dotenv
 
 load_dotenv()  # يقرأ ملف .env
 
- 
+
 IMAGEKIT_PRIVATE_KEY = os.getenv("IMAGEKIT_PRIVATE_KEY")
 IMAGEKIT_URL_ENDPOINT = os.getenv("IMAGEKIT_URL_ENDPOINT")
-IMAGEKIT_PUBLIC_KEY=os.getenv("IMAGEKIT_PUBLIC_KEY")
+IMAGEKIT_PUBLIC_KEY = os.getenv("IMAGEKIT_PUBLIC_KEY")
 
 
 imagekit = ImageKit(
-     
-     
+
+
     private_key=IMAGEKIT_PRIVATE_KEY,
-    
-         
+
+
 )
 URL_ENDPOINT = IMAGEKIT_URL_ENDPOINT
 
@@ -43,11 +43,11 @@ class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
-     
+
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
- 
+
 
 class ProductImageViewSet(viewsets.ModelViewSet):
     queryset = ProductImage.objects.all()

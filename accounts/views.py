@@ -20,18 +20,18 @@ class LoginViewSet(viewsets.ViewSet):
         password = serializer.validated_data['password']
         user = authenticate(request, email=email, password=password)
         if user is not None:
-            
+
             token = AuthToken.objects.create(user)[1]
             return Response(
                 {
                     "message": "Login successful",
-                    "user": user.email, 
+                    "user": user.email,
                     "token": token},
                 status=status.HTTP_200_OK
             )
         else:
             return Response({"error": "Invalid email or password"}, status=status.HTTP_400_BAD_REQUEST)
-         
+
 
 class RegisterViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.AllowAny]
@@ -42,7 +42,7 @@ class RegisterViewSet(viewsets.ModelViewSet):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user = serializer.save()
-        
+
         # Generate a token for the newly registered user
         token = AuthToken.objects.create(user)[1]
 
@@ -51,11 +51,9 @@ class RegisterViewSet(viewsets.ModelViewSet):
             "user": user.email,
             "token": token
         }, status=status.HTTP_201_CREATED)
-    
-
 
 class UserViewSet(viewsets.ViewSet):
-    
+
     queryset = User.objects.all()
     serializer_class = UserSerializer
 

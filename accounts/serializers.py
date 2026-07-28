@@ -7,7 +7,6 @@ class LoginSerializer(serializers.Serializer):
     email = serializers.EmailField()
     password = serializers.CharField(write_only=True)
 
-
     def to_representation(self, instance):
         ret = super().to_representation(instance)
         ret.pop("password", None)
@@ -19,7 +18,6 @@ class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['email', 'password']
-        
 
     def create(self, validated_data):
         user = User.objects.create_user(
@@ -32,4 +30,3 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['id', 'email']
-        

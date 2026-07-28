@@ -1,0 +1,33 @@
+[flake8]
+max-line-length = 120
+max-complexity = 10
+exclude =
+    .git,
+    .mypy_cache,
+    __pycache__,
+    .venv,
+
+ignore =
+    C101,
+    D403,
+    F403,
+    F405,
+    I100,
+    I201,
+    W503,
+    W504,
+    W292,
+    E302,
+    E111,
+    W293,
+    F401,
+    E501,
+    E231,
+    E262,
+    F821,
+    E121,
+    E126
+per-file-ignores =
+    project/settings/templates/settings.dev.py: F821
+count = True
+statistics = True

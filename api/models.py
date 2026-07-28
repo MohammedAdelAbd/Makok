@@ -12,33 +12,32 @@ class Category(models.Model):
         return self.name
 
 class Product(models.Model):
-    name= models.CharField(max_length=100, unique=True, blank=False)
+    name = models.CharField(max_length=100, unique=True, blank=False)
     price = models.FloatField(blank=True)
-    descriptions = models.TextField( blank=True )
+    descriptions = models.TextField(blank=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    
+
     def __str__(self):
         return self.name
-    
+
 class ProductImage(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="images")
     image_url = models.URLField()
     file_id = models.TextField()
-    
+
     def __str__(self):
         return f"{self.product.name} Image"
-     
+
 class Customers(models.Model):
     name = models.CharField(max_length=200)
     phone = models.CharField(max_length=20)
     university = models.CharField(max_length=200)
     department = models.CharField(max_length=200)
     batch_number = models.CharField(max_length=20)
-    
 
     def __str__(self):
         return self.name
-    
+
 class Orders(models.Model):
     customer = models.ForeignKey(Customers, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)

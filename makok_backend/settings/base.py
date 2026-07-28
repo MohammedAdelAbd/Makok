@@ -1,26 +1,12 @@
-from pathlib import Path
 import os
 from dotenv import load_dotenv
 
+DEBUG = False
+SECRET_KEY = NotImplemented
 
 load_dotenv()  # يقرأ ملف .env
 
 IMAGEKIT_PUBLIC_KEY = os.getenv("IMAGEKIT_PUBLIC_KEY")
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv("SECRET_KEY")
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv("DEBUG", "False") == "True"
- 
-# Application definition
 
 INSTALLED_APPS = [
     "corsheaders",
@@ -36,12 +22,11 @@ INSTALLED_APPS = [
     "phonenumber_field",
     'knox',
     'imagekit',
-    
 ]
 
 MIDDLEWARE = [
-    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -69,7 +54,7 @@ CORS_ALLOW_ALL_ORIGINS = True
 AUTH_USER_MODEL = "accounts.CustomUser"
 
 AUTHENTICATION_BACKENDS = [
-    
+
     'accounts.auth_backend.EmailAuthBackend',
 ]
 
@@ -102,13 +87,26 @@ REST_FRAMEWORK = {
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": "Makok\\db.sqlite3",
+#         'OPTIONS': {
+#             'timeout': 20,  # Increase the timeout to 20 seconds (default is 5)
+#         }
+#     }
+# }
+
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-        'OPTIONS': {
-            'timeout': 20,  # Increase the timeout to 20 seconds (default is 5)
-        }
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'makok',
+        'USER': 'postgres',
+        'PASSWORD': '12345678',
+        'HOST': 'localhost',
+        'PORT': '5432',
+        'atomic_requests': True,
+        'connect_max_age': 600,
     }
 }
 
@@ -149,5 +147,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = 'Makok\\staticfiles'
 STATICFILES_DIRS = []

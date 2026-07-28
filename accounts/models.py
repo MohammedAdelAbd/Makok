@@ -24,7 +24,7 @@ class CustomUserManager(BaseUserManager):
             raise ValueError("Superuser must have is_superuser=True.")
 
         return self.create_user(email, password, **extra_fields)
-    
+
 class CustomUser(AbstractUser):
     username = None
     objects = CustomUserManager()
@@ -32,7 +32,5 @@ class CustomUser(AbstractUser):
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
 
-     
-    
     def __str__(self):
         return self.email
