@@ -26,6 +26,7 @@ COPY makok_backend makok_backend
 COPY api api
 COPY accounts accounts
 COPY .env .env
+COPY staticfiles staticfiles
 
 EXPOSE 8000
 
