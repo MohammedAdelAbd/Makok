@@ -1,6 +1,8 @@
 import os
 from dotenv import load_dotenv
 
+from Makok.makok_backend.settings import BASE_DIR
+
 DEBUG = False
 SECRET_KEY = NotImplemented
 
@@ -145,7 +147,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = "/static/"
 
-STATIC_ROOT = 'Makok\\staticfiles'
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
 STATICFILES_DIRS = []
