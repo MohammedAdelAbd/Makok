@@ -25,6 +25,7 @@ COPY local local
 COPY makok_backend makok_backend
 COPY api api
 COPY accounts accounts
+COPY .env .env
 
 EXPOSE 8000
 
