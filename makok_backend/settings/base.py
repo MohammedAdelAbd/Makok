@@ -103,7 +103,7 @@ DATABASES = {
         'NAME': 'makok',
         'USER': 'postgres',
         'PASSWORD': '12345678',
-        'HOST': 'localhost',
+        'HOST': 'db',
         'PORT': '5432',
         'atomic_requests': True,
         'connect_max_age': 600,
