@@ -1,7 +1,6 @@
 import os
 from dotenv import load_dotenv
 
-from Makok.makok_backend.settings import BASE_DIR
 
 DEBUG = False
 SECRET_KEY = NotImplemented
@@ -149,6 +148,6 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 
-STATIC_ROOT = BASE_DIR / "staticfiles"
+STATIC_ROOT = "staticfiles"
 
 STATICFILES_DIRS = []
