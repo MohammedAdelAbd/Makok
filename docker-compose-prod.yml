@@ -26,8 +26,8 @@ services:
       - db
 
     environment:
-      Database: '{"default":{"HOST":"db"}}'
-      Local_Settings_Path: "/local/settings.prod.py"
+    CORESETTINGS_LOCAL_SETTINGS_PATH: "local/settings.prod.py"
+    CORESETTINGS_IN_DOCKER: "True"
 
     volumes:
       - static_volume:/opt/makok/staticfiles
