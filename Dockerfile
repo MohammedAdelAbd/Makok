@@ -23,6 +23,8 @@ COPY ["README.md", "Makefile", "manage.py", "./"]
 COPY core core
 COPY local local
 COPY makok_backend makok_backend
+COPY api api
+COPY accounts accounts
 
 EXPOSE 8000
 
