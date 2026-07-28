@@ -19,6 +19,7 @@ services:
   app:
     build: .
     restart: unless-stopped
+
     ports:
       - "8000:8000"
 
@@ -26,11 +27,12 @@ services:
       - db
 
     environment:
-    CORESETTINGS_LOCAL_SETTINGS_PATH: "local/settings.prod.py"
-    CORESETTINGS_IN_DOCKER: "True"
+      CORESETTINGS_LOCAL_SETTINGS_PATH: "local/settings.prod.py"
+      CORESETTINGS_IN_DOCKER: "True"
 
     volumes:
       - static_volume:/opt/makok/staticfiles
+      - media_volume:/opt/makok/media
 
   frontend-proxy:
     image: nginx:latest
@@ -42,6 +44,7 @@ services:
     volumes:
       - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
       - static_volume:/staticfiles:ro
+      - media_volume:/media:ro
 
     depends_on:
       - app
